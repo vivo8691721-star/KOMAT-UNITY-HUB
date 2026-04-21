@@ -189,6 +189,53 @@
     line-height: 1.8;
   }
 
+  /* ─── Search bar ─── */
+  .search-wrap {
+    position: relative;
+    margin-bottom: 24px;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 12px 20px 12px 44px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--border-glow);
+    border-radius: 8px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--neon-cyan);
+    letter-spacing: 1px;
+    outline: none;
+    transition: all 0.2s;
+  }
+
+  .search-input::placeholder { color: var(--text-dim); }
+
+  .search-input:focus {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 20px rgba(0,245,255,0.15);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-dim);
+    font-size: 16px;
+    pointer-events: none;
+  }
+
+  .no-result {
+    display: none;
+    text-align: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(0,245,255,0.2);
+    padding: 30px;
+  }
+
   /* ─── Section heading ─── */
   .section-label {
     font-family: 'Share Tech Mono', monospace;
@@ -321,7 +368,7 @@
     line-height: 1.5;
   }
 
-   /* ─── Copy button ─── */
+  /* ─── Copy button ─── */
   .copy-btn {
     flex-shrink: 0;
     position: relative;
@@ -479,6 +526,12 @@
       KOMAT UNITY HUB<br>
       <span id="clock" style="color:var(--neon-cyan)"></span>
     </div>
+  </div>
+
+  <!-- Search -->
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" id="searchInput" type="text" placeholder="ค้นหา script... (เช่น Evade, MM2, Map)" oninput="searchScripts()" />
   </div>
 
   <!-- Scripts section -->
