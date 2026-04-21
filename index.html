@@ -835,3 +835,35 @@
 </script>
 </body>
 </html>
+
+<!-- ชั้นที่ 2: สคริปต์ฟาร์ม (วางต่อท้าย Card อันแรก) -->
+<div class="section-label">// FARMING UTILITIES</div>
+<div class="script-card" style="border-color: rgba(191,0,255,0.3);">
+  <div class="card-header">
+    <div class="card-icon" style="border-color: var(--neon-purple); color: var(--neon-purple);">💰</div>
+    <div class="card-title" style="text-shadow: 0 0 10px var(--neon-purple);">Script Farm Evade</div>
+    <div class="card-badge" style="color:var(--neon-purple); border-color:rgba(191,0,255,0.3);">RAYFIELD UI</div>
+  </div>
+  <div class="script-row">
+    <div class="script-code">loadstring(game:HttpGet("https://pastebin.com/raw/zUkvAfMC"))()</div>
+    <button class="copy-btn" style="background: var(--neon-purple);" 
+      onclick="copyCustomText('loadstring(game:HttpGet(&quot;https://pastebin.com/raw/zUkvAfMC&quot;))()', this)">
+      COPY
+    </button>
+  </div>
+</div>
+
+
+// วางเพิ่มเข้าไปใน <script> เดิมของมึง
+function copyCustomText(text, btnElement) {
+  navigator.clipboard.writeText(text).then(() => {
+    const originalText = btnElement.textContent;
+    btnElement.textContent = 'DONE!';
+    btnElement.classList.add('copied');
+    setTimeout(() => {
+      btnElement.textContent = originalText;
+      btnElement.classList.remove('copied');
+    }, 2000);
+  });
+}
+
