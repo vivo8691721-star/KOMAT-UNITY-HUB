@@ -836,34 +836,67 @@
 </body>
 </html>
 
-<!-- ชั้นที่ 2: สคริปต์ฟาร์ม (วางต่อท้าย Card อันแรก) -->
-<div class="section-label">// FARMING UTILITIES</div>
-<div class="script-card" style="border-color: rgba(191,0,255,0.3);">
-  <div class="card-header">
-    <div class="card-icon" style="border-color: var(--neon-purple); color: var(--neon-purple);">💰</div>
-    <div class="card-title" style="text-shadow: 0 0 10px var(--neon-purple);">Script Farm Evade</div>
-    <div class="card-badge" style="color:var(--neon-purple); border-color:rgba(191,0,255,0.3);">RAYFIELD UI</div>
+  <!-- ส่วน HTML ชั้นที่ 2 (ก๊อปไปวางต่อท้าย Card อันแรก) -->
+  <div class="section-label">// FARMING UTILITIES</div>
+  <div class="script-card" style="border-color: rgba(191,0,255,0.3);">
+    <div class="card-header">
+      <div class="card-icon" style="border-color: var(--neon-purple); color: var(--neon-purple);">💰</div>
+      <div class="card-title" style="text-shadow: 0 0 10px var(--neon-purple);">Script Farm Evade</div>
+      <div class="card-badge" style="color:var(--neon-purple); border-color:rgba(191,0,255,0.3);">RAYFIELD UI</div>
+    </div>
+    <div class="script-row">
+      <div class="script-code">loadstring(game:HttpGet("https://pastebin.com/raw/zUkvAfMC"))()</div>
+      <button class="copy-btn" style="background: var(--neon-purple);" 
+        onclick="copyCustomText('loadstring(game:HttpGet(&quot;https://pastebin.com/raw/zUkvAfMC&quot;))()', this)">
+        COPY
+      </button>
+    </div>
+    <p style="font-family:'Share Tech Mono'; font-size:10px; color:var(--text-dim); margin-top:12px;">FEATURES: AUTO FARM, AUTO REVIVE, ANTI-KICK, AUTO TICKET</p>
   </div>
-  <div class="script-row">
-    <div class="script-code">loadstring(game:HttpGet("https://pastebin.com/raw/zUkvAfMC"))()</div>
-    <button class="copy-btn" style="background: var(--neon-purple);" 
-      onclick="copyCustomText('loadstring(game:HttpGet(&quot;https://pastebin.com/raw/zUkvAfMC&quot;))()', this)">
-      COPY
-    </button>
+
+  <!-- ส่วนของสถิติ (Stats) -->
+  <div class="section-label">// SYSTEM STATS</div>
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-label">Scripts Loaded</div>
+      <div class="info-value">02</div>
+    </div>
+    <div class="info-card">
+      <div class="info-label">Status</div>
+      <div class="info-value" style="color:var(--neon-green)">ONLINE</div>
+    </div>
+    <div class="info-card">
+      <div class="info-label">Version</div>
+      <div class="info-value">1.0.2</div>
+    </div>
   </div>
-</div>
+</main> <!-- ปิดส่วนหลัก -->
 
+<script>
+  // ระบบนาฬิกา (อันเดิมของมึง)
+  function updateClock() {
+    const now = new Date();
+    const clock = document.getElementById('clock');
+    if(clock) clock.textContent = now.toLocaleTimeString('en-GB') + ' UTC+7';
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
 
-// วางเพิ่มเข้าไปใน <script> เดิมของมึง
-function copyCustomText(text, btnElement) {
-  navigator.clipboard.writeText(text).then(() => {
-    const originalText = btnElement.textContent;
-    btnElement.textContent = 'DONE!';
-    btnElement.classList.add('copied');
-    setTimeout(() => {
-      btnElement.textContent = originalText;
-      btnElement.classList.remove('copied');
-    }, 2000);
-  });
-}
-
+  // [นี่คือตัวที่มึงงง!] ฟังก์ชันก๊อปปี้เพื่อให้ปุ่มชั้นที่ 2 ทำงานได้
+  function copyCustomText(text, btnElement) {
+    navigator.clipboard.writeText(text).then(() => {
+      const originalText = btnElement.textContent;
+      btnElement.textContent = 'DONE!';
+      btnElement.classList.add('copied');
+      
+      setTimeout(() => {
+        btnElement.textContent = originalText;
+        btnElement.classList.remove('copied');
+      }, 2000);
+    }).catch(err => {
+      console.error('Copy Error:', err);
+    });
+  }
+</script>
+</body>
+</html>
