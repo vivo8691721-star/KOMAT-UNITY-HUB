@@ -490,6 +490,45 @@
     letter-spacing: 3px;
   }
 
+  /* ─── Search bar ─── */
+  .search-wrap {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 12px 20px 12px 44px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--border-glow);
+    border-radius: 8px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--neon-cyan);
+    outline: none;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+  }
+
+  .search-input::placeholder { color: rgba(0,245,255,0.3); }
+
+  .search-input:focus {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 20px rgba(0,245,255,0.15);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(0,245,255,0.4);
+    font-size: 16px;
+    pointer-events: none;
+  }
+
+  .script-card.hidden { display: none; }
+
   /* ─── Scrollbar ─── */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -536,8 +575,9 @@
 
   <!-- Scripts section -->
   <div class="section-label">// SCRIPTS &amp; TOOLS</div>
+  <div id="noResult" class="no-result">[ ไม่พบ script ที่ค้นหา ]</div>
 
-  <div class="script-card">
+  <div id="scriptEvade" class="script-card">
     <div class="card-corner tl"></div>
     <div class="card-corner tr"></div>
     <div class="card-corner bl"></div>
@@ -560,12 +600,88 @@
     </div>
   </div>
 
+  <!-- MM2 Script Card -->
+  <div id="scriptMM2" class="script-card" style="border-color: rgba(191,0,255,0.3); box-shadow: 0 0 40px rgba(191,0,255,0.04), inset 0 1px 0 rgba(191,0,255,0.1);">
+    <div class="card-corner tl" style="border-color: var(--neon-purple);"></div>
+    <div class="card-corner tr" style="border-color: var(--neon-purple);"></div>
+    <div class="card-corner bl" style="border-color: var(--neon-purple);"></div>
+    <div class="card-corner br" style="border-color: var(--neon-purple);"></div>
+
+    <div class="card-header">
+      <div class="card-icon" style="border-color: var(--neon-purple); box-shadow: 0 0 16px rgba(191,0,255,0.2), inset 0 0 12px rgba(191,0,255,0.05); background: rgba(191,0,255,0.05);">🔫</div>
+      <div>
+        <div class="card-title" style="color: var(--neon-purple); text-shadow: 0 0 16px var(--neon-purple);">Script MM2</div>
+      </div>
+      <div class="card-badge" style="color: var(--neon-purple); background: rgba(191,0,255,0.08); border-color: rgba(191,0,255,0.3); text-shadow: 0 0 6px var(--neon-purple);">✓ ACTIVE</div>
+    </div>
+
+    <!-- Steps -->
+    <div style="margin-bottom: 16px;">
+      <div style="font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:3px; color:rgba(191,0,255,0.6); margin-bottom:12px;">// HOW TO USE</div>
+
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; align-items:flex-start; gap:12px; background:rgba(0,0,0,0.3); border:1px solid rgba(191,0,255,0.12); border-radius:8px; padding:12px 16px;">
+          <div style="font-family:'Orbitron',monospace; font-size:11px; color:var(--neon-purple); text-shadow:0 0 8px var(--neon-purple); flex-shrink:0; background:rgba(191,0,255,0.1); border:1px solid rgba(191,0,255,0.3); border-radius:4px; padding:2px 8px;">01</div>
+          <div style="font-family:'Rajdhani',sans-serif; font-size:14px; color:rgba(0,245,255,0.7); line-height:1.5;">เปิดเกม <strong style="color:var(--neon-cyan)">Murder Mystery 2</strong> บน Roblox</div>
+        </div>
+
+        <div style="display:flex; align-items:flex-start; gap:12px; background:rgba(0,0,0,0.3); border:1px solid rgba(191,0,255,0.12); border-radius:8px; padding:12px 16px;">
+          <div style="font-family:'Orbitron',monospace; font-size:11px; color:var(--neon-purple); text-shadow:0 0 8px var(--neon-purple); flex-shrink:0; background:rgba(191,0,255,0.1); border:1px solid rgba(191,0,255,0.3); border-radius:4px; padding:2px 8px;">02</div>
+          <div style="font-family:'Rajdhani',sans-serif; font-size:14px; color:rgba(0,245,255,0.7); line-height:1.5;">เปิด <strong style="color:var(--neon-cyan)">Executor</strong> ที่มึงใช้อยู่ (เช่น Synapse, KRNL, Fluxus)</div>
+        </div>
+
+        <div style="display:flex; align-items:flex-start; gap:12px; background:rgba(0,0,0,0.3); border:1px solid rgba(191,0,255,0.12); border-radius:8px; padding:12px 16px;">
+          <div style="font-family:'Orbitron',monospace; font-size:11px; color:var(--neon-purple); text-shadow:0 0 8px var(--neon-purple); flex-shrink:0; background:rgba(191,0,255,0.1); border:1px solid rgba(191,0,255,0.3); border-radius:4px; padding:2px 8px;">03</div>
+          <div style="font-family:'Rajdhani',sans-serif; font-size:14px; color:rgba(0,245,255,0.7); line-height:1.5;">คัดลอก Script ด้านล่าง แล้ว <strong style="color:var(--neon-cyan)">วาง (Paste)</strong> ลงใน Executor</div>
+        </div>
+
+        <div style="display:flex; align-items:flex-start; gap:12px; background:rgba(0,0,0,0.3); border:1px solid rgba(191,0,255,0.12); border-radius:8px; padding:12px 16px;">
+          <div style="font-family:'Orbitron',monospace; font-size:11px; color:var(--neon-purple); text-shadow:0 0 8px var(--neon-purple); flex-shrink:0; background:rgba(191,0,255,0.1); border:1px solid rgba(191,0,255,0.3); border-radius:4px; padding:2px 8px;">04</div>
+          <div style="font-family:'Rajdhani',sans-serif; font-size:14px; color:rgba(0,245,255,0.7); line-height:1.5;">กด <strong style="color:var(--neon-green); text-shadow:0 0 8px var(--neon-green);">Execute</strong> แล้ว GUI จะโผล่ขึ้นมาเลย 🔥</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="script-row" style="border-color: rgba(191,0,255,0.15);">
+      <div class="script-code" style="color:rgba(191,0,255,0.8);">loadstring(game:HttpGet("https://raw.githubusercontent.com/vivo8691721-star/KOMAT-UNITY-HUB-MM2/refs/heads/main/KOMATHUB"))()</div>
+      <div style="position:relative;">
+        <button class="copy-btn" id="copyBtnMM2" onclick="copyMM2()" style="background:var(--neon-purple); box-shadow:0 0 20px rgba(191,0,255,0.4), 0 0 40px rgba(191,0,255,0.15);">COPY</button>
+        <div class="copied-toast" id="toastMM2">✓ COPIED!</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- Map Evade Script Card -->
+  <div id="scriptMap" class="script-card" style="border-color: rgba(255,0,128,0.3); box-shadow: 0 0 40px rgba(255,0,128,0.04), inset 0 1px 0 rgba(255,0,128,0.1);">
+    <div class="card-corner tl" style="border-color: var(--neon-pink);"></div>
+    <div class="card-corner tr" style="border-color: var(--neon-pink);"></div>
+    <div class="card-corner bl" style="border-color: var(--neon-pink);"></div>
+    <div class="card-corner br" style="border-color: var(--neon-pink);"></div>
+
+    <div class="card-header">
+      <div class="card-icon" style="border-color: var(--neon-pink); box-shadow: 0 0 16px rgba(255,0,128,0.2), inset 0 0 12px rgba(255,0,128,0.05); background: rgba(255,0,128,0.05);">🗺️</div>
+      <div>
+        <div class="card-title" style="color: var(--neon-pink); text-shadow: 0 0 16px var(--neon-pink);">Script Map (Evade)</div>
+      </div>
+      <div class="card-badge" style="color: var(--neon-pink); background: rgba(255,0,128,0.08); border-color: rgba(255,0,128,0.3); text-shadow: 0 0 6px var(--neon-pink);">✓ ACTIVE</div>
+    </div>
+
+    <div class="script-row" style="border-color: rgba(255,0,128,0.15);">
+      <div class="script-code" style="color:rgba(255,0,128,0.8);">loadstring(game:HttpGet("https://pastebin.com/raw/tYxZaJrn"))()</div>
+      <div style="position:relative;">
+        <button class="copy-btn" id="copyBtnMap" onclick="copyMap()" style="background:var(--neon-pink); box-shadow:0 0 20px rgba(255,0,128,0.4), 0 0 40px rgba(255,0,128,0.15);">COPY</button>
+        <div class="copied-toast" id="toastMap">✓ COPIED!</div>
+      </div>
+    </div>
+  </div>
+
   <!-- Stats row -->
   <div class="section-label">// STATS</div>
   <div class="info-grid">
     <div class="info-card">
       <div class="info-label">Total Scripts</div>
-      <div class="info-value">01</div>
+      <div class="info-value">03</div>
     </div>
     <div class="info-card">
       <div class="info-label">Status</div>
@@ -586,6 +702,27 @@
 </main>
 
 <script>
+
+  // Filter scripts
+  function filterScripts() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    const cards = [
+      { el: document.getElementById('scriptEvade'), keywords: 'script evade eva' },
+      { el: document.getElementById('scriptMM2'), keywords: 'script mm2 murder mystery' },
+      { el: document.getElementById('scriptMap'), keywords: 'script map evade mape' },
+    ];
+    let anyVisible = false;
+    cards.forEach(c => {
+      if (!q || c.keywords.includes(q)) {
+        c.el.style.display = '';
+        anyVisible = true;
+      } else {
+        c.el.style.display = 'none';
+      }
+    });
+    document.getElementById('noResult').style.display = anyVisible ? 'none' : 'block';
+  }
+
   // Clock
   function updateClock() {
     const now = new Date();
@@ -594,6 +731,72 @@
   }
   updateClock();
   setInterval(updateClock, 1000);
+
+  // Search scripts
+  const scripts = [
+    { id: 'scriptEvade', keywords: 'script evade evad ev eva' },
+    { id: 'scriptMM2',   keywords: 'script mm2 murder mystery mm' },
+    { id: 'scriptMap',   keywords: 'script map evade map ev' },
+  ];
+
+  function searchScripts() {
+    const q = document.getElementById('searchInput').value.toLowerCase().trim();
+    let anyVisible = false;
+    scripts.forEach(s => {
+      const el = document.getElementById(s.id);
+      if (!el) return;
+      const match = q === '' || s.keywords.includes(q);
+      el.style.display = match ? '' : 'none';
+      if (match) anyVisible = true;
+    });
+    document.getElementById('noResult').style.display = anyVisible ? 'none' : 'block';
+  }
+
+  // Copy Map Evade
+  function copyMap() {
+    const text = `loadstring(game:HttpGet("https://pastebin.com/raw/tYxZaJrn"))()`;
+    const btn = document.getElementById('copyBtnMap');
+    const toast = document.getElementById('toastMap');
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+    } catch(e) {}
+    btn.textContent = 'COPIED!';
+    btn.classList.add('copied');
+    btn.style.background = 'var(--neon-green)';
+    toast.classList.add('show');
+    setTimeout(() => {
+      btn.textContent = 'COPY';
+      btn.classList.remove('copied');
+      btn.style.background = 'var(--neon-pink)';
+      toast.classList.remove('show');
+    }, 2000);
+  }
+
+  // Copy MM2
+  function copyMM2() {
+    const text = `loadstring(game:HttpGet("https://raw.githubusercontent.com/vivo8691721-star/KOMAT-UNITY-HUB-MM2/refs/heads/main/KOMATHUB"))()`;
+    const btn = document.getElementById('copyBtnMM2');
+    const toast = document.getElementById('toastMM2');
+    navigator.clipboard.writeText(text).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+    }).finally ? navigator.clipboard.writeText(text).then(()=>{}).catch(()=>{}) : null;
+    navigator.clipboard.writeText(text);
+    btn.textContent = 'COPIED!';
+    btn.classList.add('copied');
+    btn.style.background = 'var(--neon-green)';
+    toast.classList.add('show');
+    setTimeout(() => {
+      btn.textContent = 'COPY';
+      btn.classList.remove('copied');
+      btn.style.background = 'var(--neon-purple)';
+      toast.classList.remove('show');
+    }, 2000);
+  }
 
   // Copy button
   function copyScript() {
