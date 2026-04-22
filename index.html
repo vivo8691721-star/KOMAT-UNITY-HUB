@@ -11,6 +11,7 @@
     --neon-purple: #bf00ff;
     --neon-pink: #ff0080;
     --neon-green: #00ff88;
+    --neon-orange: #ffa500;
     --dark-bg: #030712;
     --panel-bg: rgba(0,245,255,0.03);
     --border-glow: rgba(0,245,255,0.3);
@@ -26,8 +27,7 @@
     display: flex;
   }
   body::before {
-    content:'';
-    position:fixed; inset:0;
+    content:''; position:fixed; inset:0;
     background-image:
       linear-gradient(rgba(0,245,255,0.04) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0,245,255,0.04) 1px, transparent 1px);
@@ -45,13 +45,11 @@
   }
   @keyframes gridScroll { 0%{transform:translateY(0)} 100%{transform:translateY(40px)} }
 
-  /* Sidebar */
   .sidebar {
     position:fixed; left:0; top:0; bottom:0; width:220px;
-    background:rgba(0,245,255,0.02);
-    border-right:1px solid var(--border-glow);
-    display:flex; flex-direction:column; align-items:flex-start;
-    padding:30px 20px; z-index:10; backdrop-filter:blur(12px); gap:8px;
+    background:rgba(0,245,255,0.02); border-right:1px solid var(--border-glow);
+    display:flex; flex-direction:column; padding:30px 20px;
+    z-index:10; backdrop-filter:blur(12px); gap:8px;
   }
   .sidebar-logo {
     font-family:'Orbitron',monospace; font-size:14px; font-weight:900;
@@ -75,9 +73,8 @@
   .nav-item:hover, .nav-item.active {
     color:var(--neon-cyan); border-color:var(--border-glow);
     background:rgba(0,245,255,0.05); text-shadow:0 0 10px var(--neon-cyan);
-    box-shadow:inset 0 0 20px rgba(0,245,255,0.05);
   }
-  .nav-item.active::before { content:'▶'; color:var(--neon-green); text-shadow:0 0 8px var(--neon-green); }
+  .nav-item.active::before { content:'▶'; color:var(--neon-green); }
   .sidebar-status {
     margin-top:auto; width:100%; padding:12px 14px;
     border:1px solid rgba(0,255,136,0.2); border-radius:6px;
@@ -85,14 +82,12 @@
     font-size:10px; color:var(--neon-green); text-shadow:0 0 8px var(--neon-green);
   }
   .status-dot {
-    display:inline-block; width:6px; height:6px;
-    background:var(--neon-green); border-radius:50%;
-    box-shadow:0 0 8px var(--neon-green);
+    display:inline-block; width:6px; height:6px; background:var(--neon-green);
+    border-radius:50%; box-shadow:0 0 8px var(--neon-green);
     animation:pulse 2s infinite; margin-right:6px;
   }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-  /* Main */
   .main { margin-left:220px; flex:1; padding:40px; position:relative; z-index:1; }
   .topbar {
     display:flex; align-items:center; justify-content:space-between;
@@ -102,22 +97,15 @@
     font-family:'Orbitron',monospace; font-size:22px; font-weight:700;
     letter-spacing:4px; text-shadow:0 0 20px var(--neon-cyan);
   }
-  .topbar-meta {
-    font-family:'Share Tech Mono',monospace; font-size:11px;
-    color:var(--text-dim); text-align:right; line-height:1.8;
-  }
+  .topbar-meta { font-family:'Share Tech Mono',monospace; font-size:11px; color:var(--text-dim); text-align:right; line-height:1.8; }
   .section-label {
     font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:4px;
     color:var(--neon-purple); text-shadow:0 0 8px var(--neon-purple);
     text-transform:uppercase; margin-bottom:16px;
     display:flex; align-items:center; gap:10px;
   }
-  .section-label::after {
-    content:''; flex:1; height:1px;
-    background:linear-gradient(90deg,rgba(191,0,255,0.4),transparent);
-  }
+  .section-label::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,rgba(191,0,255,0.4),transparent); }
 
-  /* Card */
   .script-card {
     background:var(--panel-bg); border:1px solid var(--border-glow);
     border-radius:12px; padding:28px 32px; position:relative;
@@ -131,34 +119,22 @@
     animation:scanline 3s ease-in-out infinite;
   }
   @keyframes scanline { 0%,100%{opacity:0.3;transform:scaleX(0.5)} 50%{opacity:1;transform:scaleX(1)} }
-  .script-card:hover {
-    box-shadow:0 0 60px rgba(0,245,255,0.08),inset 0 1px 0 rgba(0,245,255,0.15);
-    border-color:rgba(0,245,255,0.5);
-  }
-  .card-corner {
-    position:absolute; width:14px; height:14px;
-    border-color:var(--neon-cyan); border-style:solid; opacity:0.5;
-  }
+  .card-corner { position:absolute; width:14px; height:14px; border-color:var(--neon-cyan); border-style:solid; opacity:0.5; }
   .card-corner.tl{top:8px;left:8px;border-width:2px 0 0 2px}
   .card-corner.tr{top:8px;right:8px;border-width:2px 2px 0 0}
   .card-corner.bl{bottom:8px;left:8px;border-width:0 0 2px 2px}
   .card-corner.br{bottom:8px;right:8px;border-width:0 2px 2px 0}
   .card-header { display:flex; align-items:center; gap:14px; margin-bottom:20px; }
   .card-icon {
-    width:42px; height:42px; border:1px solid var(--neon-cyan);
-    border-radius:8px; display:flex; align-items:center; justify-content:center;
-    font-size:18px; box-shadow:0 0 16px rgba(0,245,255,0.2),inset 0 0 12px rgba(0,245,255,0.05);
+    width:42px; height:42px; border:1px solid var(--neon-cyan); border-radius:8px;
+    display:flex; align-items:center; justify-content:center; font-size:18px;
     background:rgba(0,245,255,0.05); flex-shrink:0;
   }
-  .card-title {
-    font-family:'Orbitron',monospace; font-size:18px; font-weight:700;
-    letter-spacing:3px; text-shadow:0 0 16px var(--neon-cyan);
-  }
+  .card-title { font-family:'Orbitron',monospace; font-size:18px; font-weight:700; letter-spacing:3px; text-shadow:0 0 16px var(--neon-cyan); }
   .card-badge {
     font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:2px;
     color:var(--neon-green); background:rgba(0,255,136,0.08);
-    border:1px solid rgba(0,255,136,0.3); padding:3px 8px;
-    border-radius:4px; text-shadow:0 0 6px var(--neon-green);
+    border:1px solid rgba(0,255,136,0.3); padding:3px 8px; border-radius:4px;
   }
   .script-row {
     display:flex; align-items:center; gap:14px;
@@ -167,67 +143,41 @@
   }
   .script-code {
     flex:1; font-family:'Share Tech Mono',monospace; font-size:12px;
-    color:rgba(0,245,255,0.8); letter-spacing:0.5px; word-break:break-all; line-height:1.5;
+    color:rgba(0,245,255,0.8); word-break:break-all; line-height:1.5;
+    user-select:all;
   }
   .copy-btn {
-    flex-shrink:0; position:relative; padding:10px 20px;
-    font-family:'Orbitron',monospace; font-size:11px; font-weight:700;
-    letter-spacing:2px; color:var(--dark-bg); background:var(--neon-cyan);
-    border:none; border-radius:6px; cursor:pointer; overflow:hidden;
+    flex-shrink:0; padding:10px 20px; font-family:'Orbitron',monospace;
+    font-size:11px; font-weight:700; letter-spacing:2px; color:#030712;
+    background:var(--neon-cyan); border:none; border-radius:6px; cursor:pointer;
     transition:all 0.2s cubic-bezier(0.34,1.56,0.64,1);
-    box-shadow:0 0 20px rgba(0,245,255,0.4),0 0 40px rgba(0,245,255,0.15);
-    user-select:none;
+    box-shadow:0 0 20px rgba(0,245,255,0.4); user-select:none; position:relative;
   }
-  .copy-btn:hover { transform:translateY(-2px) scale(1.03); box-shadow:0 0 30px rgba(0,245,255,0.7),0 0 60px rgba(0,245,255,0.3); }
+  .copy-btn:hover { transform:translateY(-2px) scale(1.03); box-shadow:0 0 30px rgba(0,245,255,0.7); }
   .copy-btn:active { transform:translateY(1px) scale(0.97); }
-  .copy-btn.copied { animation:boop 0.3s cubic-bezier(0.34,1.56,0.64,1); }
   @keyframes boop { 0%{transform:scale(1)} 40%{transform:scale(1.12)} 100%{transform:scale(1)} }
   .copied-toast {
     position:absolute; bottom:-22px; right:0;
     font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:2px;
-    color:var(--neon-green); text-shadow:0 0 8px var(--neon-green);
-    opacity:0; transition:opacity 0.3s; white-space:nowrap;
+    color:var(--neon-green); opacity:0; transition:opacity 0.3s; white-space:nowrap;
   }
   .copied-toast.show { opacity:1; }
 
-  /* Steps */
   .steps { display:flex; flex-direction:column; gap:10px; margin-bottom:16px; }
-  .step {
-    display:flex; align-items:flex-start; gap:12px;
-    background:rgba(0,0,0,0.3); border:1px solid rgba(191,0,255,0.12);
-    border-radius:8px; padding:12px 16px;
-  }
-  .step-num {
-    font-family:'Orbitron',monospace; font-size:11px; color:var(--neon-purple);
-    text-shadow:0 0 8px var(--neon-purple); flex-shrink:0;
-    background:rgba(191,0,255,0.1); border:1px solid rgba(191,0,255,0.3);
-    border-radius:4px; padding:2px 8px;
-  }
+  .step { display:flex; align-items:flex-start; gap:12px; background:rgba(0,0,0,0.3); border:1px solid rgba(191,0,255,0.12); border-radius:8px; padding:12px 16px; }
+  .step-num { font-family:'Orbitron',monospace; font-size:11px; color:var(--neon-purple); flex-shrink:0; background:rgba(191,0,255,0.1); border:1px solid rgba(191,0,255,0.3); border-radius:4px; padding:2px 8px; }
   .step-text { font-family:'Rajdhani',sans-serif; font-size:14px; color:rgba(0,245,255,0.7); line-height:1.5; }
 
-  /* Info grid */
   .info-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:24px; }
-  .info-card {
-    background:rgba(0,0,0,0.3); border:1px solid rgba(0,245,255,0.08);
-    border-radius:8px; padding:16px 18px; transition:border-color 0.2s;
-  }
-  .info-card:hover { border-color:rgba(0,245,255,0.25); }
-  .info-label {
-    font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:2px;
-    color:var(--text-dim); text-transform:uppercase; margin-bottom:6px;
-  }
-  .info-value {
-    font-family:'Orbitron',monospace; font-size:16px; font-weight:700;
-    color:var(--neon-cyan); text-shadow:0 0 10px rgba(0,245,255,0.5);
-  }
+  .info-card { background:rgba(0,0,0,0.3); border:1px solid rgba(0,245,255,0.08); border-radius:8px; padding:16px 18px; }
+  .info-label { font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:2px; color:var(--text-dim); text-transform:uppercase; margin-bottom:6px; }
+  .info-value { font-family:'Orbitron',monospace; font-size:16px; font-weight:700; color:var(--neon-cyan); text-shadow:0 0 10px rgba(0,245,255,0.5); }
   .placeholder-card {
     background:rgba(0,0,0,0.2); border:1px dashed rgba(0,245,255,0.1);
     border-radius:12px; padding:24px 32px; text-align:center; margin-bottom:24px;
-    color:rgba(0,245,255,0.15); font-family:'Share Tech Mono',monospace;
-    font-size:11px; letter-spacing:3px;
+    color:rgba(0,245,255,0.15); font-family:'Share Tech Mono',monospace; font-size:11px; letter-spacing:3px;
   }
   ::-webkit-scrollbar { width:4px; }
-  ::-webkit-scrollbar-track { background:transparent; }
   ::-webkit-scrollbar-thumb { background:var(--border-glow); border-radius:2px; }
 </style>
 </head>
@@ -254,7 +204,7 @@
 
   <div class="section-label">// SCRIPTS &amp; TOOLS</div>
 
-  <!-- Card 1: Script Evade -->
+  <!-- Card 1: Script Evade (cyan) -->
   <div class="script-card">
     <div class="card-corner tl"></div><div class="card-corner tr"></div>
     <div class="card-corner bl"></div><div class="card-corner br"></div>
@@ -264,15 +214,15 @@
       <div class="card-badge">✓ ACTIVE</div>
     </div>
     <div class="script-row">
-      <div class="script-code">loadstring(game:HttpGet("https://pastebin.com/raw/V6vSmsMU"))()</div>
+      <div class="script-code" id="code1">loadstring(game:HttpGet("https://pastebin.com/raw/V6vSmsMU"))()</div>
       <div style="position:relative;">
-        <button class="copy-btn" id="btn1" onclick="doCopy('loadstring(game:HttpGet(\"https://pastebin.com/raw/V6vSmsMU\"))()', 'btn1', 'toast1', 'var(--neon-cyan)')">COPY</button>
+        <button class="copy-btn" id="btn1" onclick="doCopy(1)">COPY</button>
         <div class="copied-toast" id="toast1">✓ COPIED!</div>
       </div>
     </div>
   </div>
 
-  <!-- Card 2: Script MM2 -->
+  <!-- Card 2: Script MM2 (purple) -->
   <div class="script-card" style="border-color:rgba(191,0,255,0.3);">
     <div class="card-corner tl" style="border-color:var(--neon-purple)"></div>
     <div class="card-corner tr" style="border-color:var(--neon-purple)"></div>
@@ -288,18 +238,18 @@
       <div class="step"><div class="step-num">01</div><div class="step-text">เปิดเกม <strong style="color:var(--neon-cyan)">Murder Mystery 2</strong> บน Roblox</div></div>
       <div class="step"><div class="step-num">02</div><div class="step-text">เปิด <strong style="color:var(--neon-cyan)">Executor</strong> ที่ใช้อยู่ (เช่น Synapse, KRNL, Fluxus)</div></div>
       <div class="step"><div class="step-num">03</div><div class="step-text">คัดลอก Script ด้านล่าง แล้ว <strong style="color:var(--neon-cyan)">วาง (Paste)</strong> ลงใน Executor</div></div>
-      <div class="step"><div class="step-num">04</div><div class="step-text">กด <strong style="color:var(--neon-green);text-shadow:0 0 8px var(--neon-green);">Execute</strong> แล้ว GUI จะโผล่ขึ้นมาเลย 🔥</div></div>
+      <div class="step"><div class="step-num">04</div><div class="step-text">กด <strong style="color:var(--neon-green);">Execute</strong> แล้ว GUI จะโผล่ขึ้นมาเลย 🔥</div></div>
     </div>
     <div class="script-row" style="border-color:rgba(191,0,255,0.15);">
-      <div class="script-code" style="color:rgba(191,0,255,0.8);">loadstring(game:HttpGet("https://raw.githubusercontent.com/vivo8691721-star/KOMAT-UNITY-HUB-MM2/refs/heads/main/KOMATHUB"))()</div>
+      <div class="script-code" id="code2" style="color:rgba(191,0,255,0.8);">loadstring(game:HttpGet("https://raw.githubusercontent.com/vivo8691721-star/KOMAT-UNITY-HUB-MM2/refs/heads/main/KOMATHUB"))()</div>
       <div style="position:relative;">
-        <button class="copy-btn" id="btn2" onclick="doCopy('loadstring(game:HttpGet(\"https://raw.githubusercontent.com/vivo8691721-star/KOMAT-UNITY-HUB-MM2/refs/heads/main/KOMATHUB\"))()', 'btn2', 'toast2', 'var(--neon-purple)')" style="background:var(--neon-purple);">COPY</button>
+        <button class="copy-btn" id="btn2" onclick="doCopy(2)" style="background:var(--neon-purple);box-shadow:0 0 20px rgba(191,0,255,0.4);">COPY</button>
         <div class="copied-toast" id="toast2">✓ COPIED!</div>
       </div>
     </div>
   </div>
 
-  <!-- Card 3: Script Map Evade -->
+  <!-- Card 3: Script Map Evade (pink) -->
   <div class="script-card" style="border-color:rgba(255,0,128,0.3);">
     <div class="card-corner tl" style="border-color:var(--neon-pink)"></div>
     <div class="card-corner tr" style="border-color:var(--neon-pink)"></div>
@@ -311,15 +261,15 @@
       <div class="card-badge" style="color:var(--neon-pink);background:rgba(255,0,128,0.08);border-color:rgba(255,0,128,0.3);">✓ ACTIVE</div>
     </div>
     <div class="script-row" style="border-color:rgba(255,0,128,0.15);">
-      <div class="script-code" style="color:rgba(255,0,128,0.8);">loadstring(game:HttpGet("https://pastebin.com/raw/tYxZaJrn"))()</div>
+      <div class="script-code" id="code3" style="color:rgba(255,0,128,0.8);">loadstring(game:HttpGet("https://pastebin.com/raw/tYxZaJrn"))()</div>
       <div style="position:relative;">
-        <button class="copy-btn" id="btn3" onclick="doCopy('loadstring(game:HttpGet(\"https://pastebin.com/raw/tYxZaJrn\"))()', 'btn3', 'toast3', 'var(--neon-pink)')" style="background:var(--neon-pink);">COPY</button>
+        <button class="copy-btn" id="btn3" onclick="doCopy(3)" style="background:var(--neon-pink);box-shadow:0 0 20px rgba(255,0,128,0.4);">COPY</button>
         <div class="copied-toast" id="toast3">✓ COPIED!</div>
       </div>
     </div>
   </div>
 
-  <!-- Card 4: Script Farm Evade -->
+  <!-- Card 4: Script Farm Evade (green) -->
   <div class="script-card" style="border-color:rgba(0,255,136,0.3);">
     <div class="card-corner tl" style="border-color:var(--neon-green)"></div>
     <div class="card-corner tr" style="border-color:var(--neon-green)"></div>
@@ -331,10 +281,30 @@
       <div class="card-badge" style="color:var(--neon-green);background:rgba(0,255,136,0.08);border-color:rgba(0,255,136,0.3);">✓ ACTIVE</div>
     </div>
     <div class="script-row" style="border-color:rgba(0,255,136,0.15);">
-      <div class="script-code" style="color:rgba(0,255,136,0.8);">loadstring(game:HttpGet("https://pastebin.com/raw/zUkvAfMC"))()</div>
+      <div class="script-code" id="code4" style="color:rgba(0,255,136,0.8);">loadstring(game:HttpGet("https://pastebin.com/raw/zUkvAfMC"))()</div>
       <div style="position:relative;">
-        <button class="copy-btn" id="btn4" onclick="doCopy('loadstring(game:HttpGet(\"https://pastebin.com/raw/zUkvAfMC\"))()', 'btn4', 'toast4', 'var(--neon-green)')" style="background:var(--neon-green);color:#030712;">COPY</button>
+        <button class="copy-btn" id="btn4" onclick="doCopy(4)" style="background:var(--neon-green);box-shadow:0 0 20px rgba(0,255,136,0.4);">COPY</button>
         <div class="copied-toast" id="toast4">✓ COPIED!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 5: Script Emote Evade (orange) -->
+  <div class="script-card" style="border-color:rgba(255,165,0,0.3);">
+    <div class="card-corner tl" style="border-color:#ffa500"></div>
+    <div class="card-corner tr" style="border-color:#ffa500"></div>
+    <div class="card-corner bl" style="border-color:#ffa500"></div>
+    <div class="card-corner br" style="border-color:#ffa500"></div>
+    <div class="card-header">
+      <div class="card-icon" style="border-color:#ffa500;background:rgba(255,165,0,0.05);">💃</div>
+      <div><div class="card-title" style="color:#ffa500;text-shadow:0 0 16px #ffa500;">Script Emote Evade</div></div>
+      <div class="card-badge" style="color:#ffa500;background:rgba(255,165,0,0.08);border-color:rgba(255,165,0,0.3);">✓ ACTIVE</div>
+    </div>
+    <div class="script-row" style="border-color:rgba(255,165,0,0.15);">
+      <div class="script-code" id="code5" style="color:rgba(255,165,0,0.8);">loadstring(game:HttpGet("https://pastebin.com/raw/rS9i9tmt"))()</div>
+      <div style="position:relative;">
+        <button class="copy-btn" id="btn5" onclick="doCopy(5)" style="background:#ffa500;box-shadow:0 0 20px rgba(255,165,0,0.4);">COPY</button>
+        <div class="copied-toast" id="toast5">✓ COPIED!</div>
       </div>
     </div>
   </div>
@@ -344,7 +314,7 @@
   <div class="info-grid">
     <div class="info-card">
       <div class="info-label">Total Scripts</div>
-      <div class="info-value">04</div>
+      <div class="info-value">05</div>
     </div>
     <div class="info-card">
       <div class="info-label">Status</div>
@@ -370,29 +340,54 @@
   }
   updateClock(); setInterval(updateClock, 1000);
 
-  // Universal copy function
-  function doCopy(text, btnId, toastId, color) {
-    try {
-      const ta = document.createElement('textarea');
-      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
-      document.body.appendChild(ta); ta.focus(); ta.select();
-      document.execCommand('copy'); document.body.removeChild(ta);
-    } catch(e) {}
-    const btn = document.getElementById(btnId);
-    const toast = document.getElementById(toastId);
-    const orig = btn.style.background || 'var(--neon-cyan)';
+  // Scripts list
+  var scripts = {
+    1: 'loadstring(game:HttpGet("https://pastebin.com/raw/V6vSmsMU"))()',
+    2: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/vivo8691721-star/KOMAT-UNITY-HUB-MM2/refs/heads/main/KOMATHUB"))()',
+    3: 'loadstring(game:HttpGet("https://pastebin.com/raw/tYxZaJrn"))()',
+    4: 'loadstring(game:HttpGet("https://pastebin.com/raw/zUkvAfMC"))()',
+    5: 'loadstring(game:HttpGet("https://pastebin.com/raw/rS9i9tmt"))()'
+  };
+
+  var origColors = {
+    1: '#00f5ff',
+    2: '#bf00ff',
+    3: '#ff0080',
+    4: '#00ff88',
+    5: '#ffa500'
+  };
+
+  function doCopy(n) {
+    var text = scripts[n];
+    var btn = document.getElementById('btn' + n);
+    var toast = document.getElementById('toast' + n);
+
+    // Copy method
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(ta);
+
+    // Feedback
     btn.textContent = 'COPIED!';
-    btn.classList.add('copied');
-    btn.style.background = 'var(--neon-green)';
+    btn.style.background = '#00ff88';
     btn.style.color = '#030712';
     toast.classList.add('show');
-    setTimeout(() => {
+    btn.style.animation = 'boop 0.3s cubic-bezier(0.34,1.56,0.64,1)';
+
+    setTimeout(function() {
       btn.textContent = 'COPY';
-      btn.classList.remove('copied');
-      btn.style.background = color;
+      btn.style.background = origColors[n];
+      btn.style.animation = '';
       toast.classList.remove('show');
     }, 2000);
   }
 </script>
 </body>
-</html>
+  </html>
+        
