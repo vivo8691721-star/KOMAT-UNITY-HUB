@@ -202,10 +202,25 @@
     <div class="topbar-meta">KOMAT UNITY HUB<br><span id="clock" style="color:var(--neon-cyan)"></span></div>
   </div>
 
+  <!-- Search -->
+  <div style="margin-bottom:20px; position:relative;">
+    <input id="searchBox" type="text" placeholder="🔍  ค้นหา script... (เช่น Evade, MM2, Farm)"
+      oninput="filterCards()"
+      style="width:100%; padding:12px 20px; font-family:'Share Tech Mono',monospace; font-size:12px;
+             letter-spacing:1px; background:rgba(0,0,0,0.4); border:1px solid rgba(0,245,255,0.2);
+             border-radius:8px; color:var(--neon-cyan); outline:none; transition:all 0.2s;"
+      onfocus="this.style.borderColor='rgba(0,245,255,0.6)';this.style.boxShadow='0 0 20px rgba(0,245,255,0.1)'"
+      onblur="this.style.borderColor='rgba(0,245,255,0.2)';this.style.boxShadow='none'"
+    />
+  </div>
+  <div id="noResult" style="display:none; text-align:center; padding:20px;
+    font-family:'Share Tech Mono',monospace; font-size:11px; letter-spacing:3px;
+    color:rgba(0,245,255,0.2);">[ ไม่พบ script ที่ค้นหา ]</div>
+
   <div class="section-label">// SCRIPTS &amp; TOOLS</div>
 
   <!-- Card 1: Script Evade (cyan) -->
-  <div class="script-card">
+  <div class="script-card" id="card1" data-name="script evade evade">
     <div class="card-corner tl"></div><div class="card-corner tr"></div>
     <div class="card-corner bl"></div><div class="card-corner br"></div>
     <div class="card-header">
@@ -223,7 +238,7 @@
   </div>
 
   <!-- Card 2: Script MM2 (purple) -->
-  <div class="script-card" style="border-color:rgba(191,0,255,0.3);">
+  <div class="script-card" id="card2" data-name="script mm2 murder mystery 2" style="border-color:rgba(191,0,255,0.3);">
     <div class="card-corner tl" style="border-color:var(--neon-purple)"></div>
     <div class="card-corner tr" style="border-color:var(--neon-purple)"></div>
     <div class="card-corner bl" style="border-color:var(--neon-purple)"></div>
@@ -250,7 +265,7 @@
   </div>
 
   <!-- Card 3: Script Map Evade (pink) -->
-  <div class="script-card" style="border-color:rgba(255,0,128,0.3);">
+  <div class="script-card" id="card3" data-name="script map evade map evade" style="border-color:rgba(255,0,128,0.3);">
     <div class="card-corner tl" style="border-color:var(--neon-pink)"></div>
     <div class="card-corner tr" style="border-color:var(--neon-pink)"></div>
     <div class="card-corner bl" style="border-color:var(--neon-pink)"></div>
@@ -270,7 +285,7 @@
   </div>
 
   <!-- Card 4: Script Farm Evade (green) -->
-  <div class="script-card" style="border-color:rgba(0,255,136,0.3);">
+  <div class="script-card" id="card4" data-name="script farm evade farm" style="border-color:rgba(0,255,136,0.3);">
     <div class="card-corner tl" style="border-color:var(--neon-green)"></div>
     <div class="card-corner tr" style="border-color:var(--neon-green)"></div>
     <div class="card-corner bl" style="border-color:var(--neon-green)"></div>
@@ -289,7 +304,7 @@
     </div>
   </div>
 
-  <!-- Card 5: Script Emote Evade (orange) -->
+    <!-- Card 5: Script Emote Evade (orange) -->
   <div class="script-card" style="border-color:rgba(255,165,0,0.3);">
     <div class="card-corner tl" style="border-color:#ffa500"></div>
     <div class="card-corner tr" style="border-color:#ffa500"></div>
@@ -389,5 +404,4 @@
   }
 </script>
 </body>
-  </html>
-        
+</html>
